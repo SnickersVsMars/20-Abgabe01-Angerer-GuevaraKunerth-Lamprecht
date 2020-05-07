@@ -28,6 +28,8 @@ public class Wine extends Drink {
      */
    public Wine(String name, Liquid liquid, boolean isSpritzer){
         super(name);
+        this.liquids[0] = liquid;
+        this.isSpritzer = isSpritzer;
     }
 
     /**
@@ -38,15 +40,18 @@ public class Wine extends Drink {
      */
     public Wine(String name, Liquid liquid) {
        super(name);
+       this.liquids[0] = liquid;
     }
 
     /**
      * Overrides getName from Drink if isSpritzer is true
-     * 
+     *
      * @return name of Drink. If isSpritzer = true, suffix "spritzer" will be added.
      */
     @Override
     public String getName() {
+        if (this.isSpritzer = true)
+            return getName() + " spritzer";
         return "";
     }
 
@@ -56,7 +61,8 @@ public class Wine extends Drink {
      * @param mineralWater mineral water to make a spritzer
      */
     private void addLiquid(Liquid mineralWater) {
-
+        if (this.isSpritzer = true)
+            this.liquids[1] = new Liquid("mineral water", 0.2, 0);
     }
     /**
      * Returns volume of liquid l
@@ -65,7 +71,10 @@ public class Wine extends Drink {
      */
     @Override
     public double getVolume() {
-        return 0;
+        double volume = 0;
+        for (Liquid l : liquids)
+            volume += l.getVolume();
+        return volume;
     }
 
     /**
@@ -75,8 +84,10 @@ public class Wine extends Drink {
      */
     @Override
     public double getAlcoholPercent() {
-        return 0;
-
+        double alcoholPercent = 0;
+        for (Liquid l : liquids)
+            alcoholPercent += l.getAlcoholPercent();
+        return alcoholPercent;
     }
     /**
      * Gives information if drink is alcoholic or not
