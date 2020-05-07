@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Cocktails extends Drink {
     /**
-     * Contains more than one liquid, liquids used are stored in an ArrayList
+     * List which contains all liquids of the cocktail
      */
     protected ArrayList<Liquid> mixture;
     /**
