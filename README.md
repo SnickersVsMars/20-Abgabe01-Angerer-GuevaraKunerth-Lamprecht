@@ -12,7 +12,7 @@ build process we will use Maven and the tests will be written with JUnit 5.
 We will manage our source with git over github and we will develop with the 
 help of IntelliJ IDEA.
 
-##The Drinks Template ##
+## The Drinks Template ##
 
 Original Template: [Drinks](https://github.com/michaelulm/software-configuration-management/tree/master/test-automation/junit5/Drinks)
 This is the project we will be working on and the most important classes are:
