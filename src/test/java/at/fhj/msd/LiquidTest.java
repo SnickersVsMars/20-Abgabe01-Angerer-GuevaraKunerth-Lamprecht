@@ -1,4 +1,4 @@
-package at.fhj.iit;
+package at.fhj.msd;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
