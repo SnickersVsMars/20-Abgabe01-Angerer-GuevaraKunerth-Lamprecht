@@ -1,1 +1,5 @@
-# 20-Abgabe01-Angerer-GuevaraKunerth-Lamprecht
+# Software Configuration Management #
+
+## Drinks Template for Exercise ###
+
+...
