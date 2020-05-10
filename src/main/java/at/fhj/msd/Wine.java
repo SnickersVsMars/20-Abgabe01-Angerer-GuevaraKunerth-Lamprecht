@@ -17,7 +17,7 @@ public class Wine extends Drink {
     /**
      * Defines if wine will be served as spritzer or as wine
      */
-    protected Boolean isSpritzer;
+    protected Boolean isSpritzer = false;
 
     /**
      * Creates a Wine object with given name and liquid
@@ -50,9 +50,9 @@ public class Wine extends Drink {
      */
     @Override
     public String getName() {
-        if (this.isSpritzer = true)
-            return getName() + " spritzer";
-        return "";
+        if (this.isSpritzer)
+            return name + " spritzer";
+        return name;
     }
 
     /**
@@ -61,7 +61,7 @@ public class Wine extends Drink {
      * @param mineralWater mineral water to make a spritzer
      */
     private void addLiquid(Liquid mineralWater) {
-        if (this.isSpritzer = true)
+        if (this.isSpritzer)
             this.liquids[1] = new Liquid("mineral water", 0.2, 0);
     }
     /**
