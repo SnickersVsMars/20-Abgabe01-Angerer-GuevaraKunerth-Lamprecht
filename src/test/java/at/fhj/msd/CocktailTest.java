@@ -31,9 +31,10 @@ class CocktailTest {
         };
         m2 = new ArrayList<>(){
             {
-                add(new Liquid("Vodka", 0.05, 60));
-                add(new Liquid("Tequila", 0.05, 70));
+                add(new Liquid("Vodka", 0.05, 70));
+                add(new Liquid("Tequila", 0.05, 80));
                 add(new Liquid("Stroh Rum", 0.05, 80));
+                add(new Liquid("Whiskey", 0.05, 80));
             }
         };
         m3  = new ArrayList<>(){
@@ -55,37 +56,49 @@ class CocktailTest {
     @Test
     @DisplayName("Testing constructor")
     public void testConstructor(){
-        assertEquals(c1.getName(), "Virgin Drink");
-        assertEquals(c1.getMixture(), m1);
-        assertEquals(c2.getName(), "Mild Custom Headache");
-        assertEquals(c2.getMixture(), m2);
+        assertEquals("Virgin Drink", c1.getName());
+        assertEquals(m1, c1.getMixture());
+        assertEquals("Mild Custom Headache", c2.getName());
+        assertEquals(m2, c2.getMixture());
+    }
+    @Test
+    @DisplayName("Testing if constructor throws")
+    public void testConstructorThrows(){
         assertThrows(BlackoutException.class, ()->{c3 = new Cocktail("Why would you drink this?", m3);});
-
     }
     @Test
     @DisplayName("Testing volume getter")
     public void testVolumeGetter(){
-        assertEquals(c1.getVolume(), 0.5, 0.001);
-        assertEquals(c2.getVolume(), 0.15, 0.001);
-        assertEquals(c3.getVolume(), 0.06, 0.001);
+        assertEquals(0.5, c1.getVolume(), 0.001);
+        assertEquals(0.20, c2.getVolume(), 0.001);
     }
     @Test
     @DisplayName("Testing alcohol percent getter")
     public void testAlcoholPercentGetter(){
-        assertEquals(c1.getAlcoholPercent(), 0.0, 0.001);
-        assertEquals(c2.getAlcoholPercent(), 70, 0.001);
-        assertEquals(c3.getAlcoholPercent(), 87, 0.001);
+        assertEquals(0.0, c1.getAlcoholPercent(), 0.001);
+        assertEquals(77.5, c2.getAlcoholPercent(), 0.001);
     }
     @Test
     @DisplayName("Testing isAlcoholic")
     public void testIsAlcoholic(){
-        assertTrue(c1.isAlcoholic());
+        assertFalse(c1.isAlcoholic());
         assertTrue(c2.isAlcoholic());
-        assertTrue(c3.isAlcoholic());
+    }
+    @Test
+    @DisplayName("Testing if addLiquid throws")
+    public void testAddLiquidThrows(){
+        assertThrows(BlackoutException.class, ()->{c2.addLiquid(weingeist);});
     }
     @Test
     @DisplayName("Testing addLiquid")
     public void testAddLiquid(){
-        assertThrows(BlackoutException.class, ()->{c2.addLiquid(weingeist);});
+        double volumeBefore = c1.getVolume();
+        try {
+            c1.addLiquid(new Liquid("Strawberrysirup", 0.1, 0.0));
+        } catch (BlackoutException e) {
+            e.printStackTrace();
+        }
+        double volumeAfter = c1.getVolume();
+        assertNotEquals(volumeAfter, volumeBefore);
     }
 }
