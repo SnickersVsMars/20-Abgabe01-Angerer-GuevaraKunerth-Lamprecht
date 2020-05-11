@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @version %I%, %G%
  * @since 1.1
  */
-public class Cocktails extends Drink {
+public class Cocktail extends Drink {
     /**
      * List which contains all liquids of the cocktail
      */
@@ -22,8 +22,12 @@ public class Cocktails extends Drink {
      * @param name Name  of the Cocktail
      * @param mixture Combination of liquids the cocktail contains
      */
-    public Cocktails (String name, ArrayList<Liquid> mixture) throws BlackoutException {
+    public Cocktail(String name, ArrayList<Liquid> mixture) throws BlackoutException {
         super(name);
+        this.mixture = mixture;
+        if (this.getAlcoholPercent() >= 80) {
+            throw new BlackoutException();
+        }
     }
     /**
      * Returns volume of cocktail
@@ -32,16 +36,26 @@ public class Cocktails extends Drink {
      */
     @Override
     public double getVolume() {
-        return 0;
+        double volume = 0;
+        for (Liquid liquid : mixture) {
+            volume += liquid.getVolume();
+        }
+        return volume;
     }
     /**
-     * Returns alcohol volume percent of cocktail by calculating mean od the percentages of the liquids
+     * Returns alcohol volume percent of cocktail by calculating mean of the percentages of the liquids
      *
      * @return alcohol volume percent
      */
     @Override
     public double getAlcoholPercent() {
-        return 0;
+        double mean = 0;
+        int counter = 0;
+        for (Liquid liquid : mixture) {
+            mean += liquid.getAlcoholPercent();
+            counter++;
+        }
+        return mean/counter;
     }
     /**
      * Gives information if drink is alcoholic or not
@@ -50,6 +64,11 @@ public class Cocktails extends Drink {
      */
     @Override
     public boolean isAlcoholic() {
+        for (Liquid liquid : mixture) {
+            if (liquid.getAlcoholPercent() > 0){
+                return true;
+            }
+        }
         return false;
     }
     /**
@@ -57,5 +76,16 @@ public class Cocktails extends Drink {
      *
      * @param newLiquid Liquid to be added
      */
-    public void addLiquid (Liquid newLiquid) throws BlackoutException{}
+    public void addLiquid (Liquid newLiquid) throws BlackoutException{
+        mixture.add(newLiquid);
+        if (this.getAlcoholPercent() >= 80){
+            throw new BlackoutException();
+        }
+    }
+    /**
+     * Getter for the attribute mixture, returns the mixture of the cocktail
+     */
+    public ArrayList<Liquid> getMixture(){
+        return mixture;
+    }
 }
