@@ -57,11 +57,10 @@ class CocktailTest {
     public void testConstructor(){
         assertEquals(c1.getName(), "Virgin Drink");
         assertEquals(c1.getMixture(), m1);
-    }
-    @Test
-    @DisplayName("Testing if constructor throws exception")
-    public void testConstructorException(){
+        assertEquals(c2.getName(), "Mild Custom Headache");
+        assertEquals(c2.getMixture(), m2);
         assertThrows(BlackoutException.class, ()->{c3 = new Cocktail("Why would you drink this?", m3);});
+
     }
     @Test
     @DisplayName("Testing volume getter")
