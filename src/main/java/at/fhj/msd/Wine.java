@@ -9,11 +9,13 @@ package at.fhj.msd;
  * @since 1.1
  */
 public class Wine extends Drink {
+
     /**
      * Contains all of the Liquids of the class
      * Uses one liquid unless boolean in constructor is true
      */
     protected Liquid[] liquids = new Liquid[2];
+
     /**
      * Defines if wine will be served as spritzer or as wine
      */
@@ -23,13 +25,15 @@ public class Wine extends Drink {
      * Creates a Wine object with given name and liquid
      *
      * @param name name of drink
-     * @param liquid first liquid is always Wine
+     * @param liquid first liquid
      * @param isSpritzer if true adds mineral water to make a spritzer
      */
    public Wine(String name, Liquid liquid, boolean isSpritzer){
         super(name);
         this.liquids[0] = liquid;
         this.isSpritzer = isSpritzer;
+       if (this.isSpritzer)
+           this.liquids[1] = new Liquid("mineral water", 0.2, 0);
     }
 
     /**
@@ -39,8 +43,7 @@ public class Wine extends Drink {
      * @param liquid liquid is wine
      */
     public Wine(String name, Liquid liquid) {
-       super(name);
-       this.liquids[0] = liquid;
+        this(name,liquid,false);
     }
 
     /**
@@ -56,15 +59,6 @@ public class Wine extends Drink {
     }
 
     /**
-     * If boolean in constructor is true Liquid mineralWater will be added to Liquid[]
-     *
-     * @param mineralWater mineral water to make a spritzer
-     */
-    private void addLiquid(Liquid mineralWater) {
-        if (this.isSpritzer)
-            this.liquids[1] = new Liquid("mineral water", 0.2, 0);
-    }
-    /**
      * Returns volume of liquid l
      *
      * @return the volume of drink in litre
@@ -73,7 +67,8 @@ public class Wine extends Drink {
     public double getVolume() {
         double volume = 0;
         for (Liquid l : liquids)
-            volume += l.getVolume();
+            if(l != null)
+                volume += l.getVolume();
         return volume;
     }
 
@@ -85,18 +80,23 @@ public class Wine extends Drink {
     @Override
     public double getAlcoholPercent() {
         double alcoholPercent = 0;
+        int nrLiquids = 0;
         for (Liquid l : liquids)
-            alcoholPercent += l.getAlcoholPercent();
-        return alcoholPercent;
+            if(l != null) {
+                alcoholPercent += l.getAlcoholPercent();
+                nrLiquids++;
+            }
+        return alcoholPercent/nrLiquids;
     }
+    
     /**
      * Gives information if drink is alcoholic or not
      *
-     * @return true because Wine is always alcoholic
+     * @return true if alcohol percentage is > 0
      */
     @Override
     public boolean isAlcoholic() {
-            return true;
+        return getAlcoholPercent() > 0;
     }
 
 }

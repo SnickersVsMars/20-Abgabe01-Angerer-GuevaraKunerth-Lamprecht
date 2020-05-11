@@ -1,9 +1,7 @@
 package at.fhj.msd;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Testing Wine implementation")
@@ -22,15 +20,21 @@ class WineTest {
     }
 
     @Test
-    @DisplayName("Testing is Spritzer")
+    @DisplayName("Testing Spritzer")
     void checkNameIsSpritzer() {
         assertEquals("Veltliner spritzer", w2.getName());
     }
 
     @Test
+    @DisplayName("Testing Wine")
+    void checkName() {
+        assertEquals("St. Laurent", w1.getName());
+    }
+
+    @Test
     @DisplayName("Testing volume")
     void checkVolume() {
-        assertEquals(0.2, w1.getVolume());
+        assertEquals(0.25, w1.getVolume());
     }
 
     @Test
@@ -44,9 +48,11 @@ class WineTest {
     void checkAlcoholPercentage() {
         assertEquals(9, w1.getAlcoholPercent());
     }
+
     @Test
     @DisplayName("Testing if added liquid is mineral water")
     void isAddedLiquidMineralWater() {
+        if (w2.liquids[1] != null)
         assertEquals("mineral water", w2.liquids[1].getName());
     }
 }
