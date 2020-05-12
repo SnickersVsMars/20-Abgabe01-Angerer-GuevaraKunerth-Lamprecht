@@ -4,6 +4,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ *  Testing class for class Wine
+ *
+ * @author martin g.k.
+ * @version %I%, %G%
+ * @since 1.1
+ */
 @DisplayName("Testing Wine implementation")
 class WineTest {
     private Wine w1, w2;
