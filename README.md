@@ -43,7 +43,7 @@ The last extension will be an addLiquid method to add Liquids at a later time.
 ### Wine ###
 
 The class `Wine` is an implementation of the abstract class `Drinks`.  
-The `Liquids` will be stored in an `ArrayList`.  
+The `Liquids` will be stored in an `Array`.  
 The constructor will get the name String, a `Liquid` and the boolean isSpritzer which will add the `Liquid` mineral water and the suffix Spritzer to the name.   
 
 ### Exemplary Code Snippet ###
