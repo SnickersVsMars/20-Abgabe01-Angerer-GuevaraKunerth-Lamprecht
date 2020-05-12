@@ -46,4 +46,21 @@ The class `Wine` is an implementation of the abstract class `Drinks`.
 The `Liquids` will be stored in an `ArrayList`.  
 The constructor will get the name String, a `Liquid` and the boolean isSpritzer which will add the `Liquid` mineral water and the suffix Spritzer to the name.   
 
+### Exemplary Code Snippet ###
 
+As required for our homework we have added a code snippet that we find relevant.  
+It's relevancy comes from the custom exception `BlackoutException` that is thrown if the alcohol content exceeds 80%. 
+  
+  ```java
+    /**
+     * Method allows to add liquids at a later time, throws BlackoutException if alcohol percentage is above 80%
+     *
+     * @param newLiquid Liquid to be added
+     */
+    public void addLiquid (Liquid newLiquid) throws BlackoutException{
+        mixture.add(newLiquid);
+        if (this.getAlcoholPercent() >= 80){
+            throw new BlackoutException();
+        }
+    }
+```
