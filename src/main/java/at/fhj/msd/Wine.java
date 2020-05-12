@@ -88,7 +88,7 @@ public class Wine extends Drink {
             }
         return alcoholPercent/nrLiquids;
     }
-    
+
     /**
      * Gives information if drink is alcoholic or not
      *
